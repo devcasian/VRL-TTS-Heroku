@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locale Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <title>Select Locales for Each File</title>
+    <script>
+        function toggleAllLocalesForFile(fileIndex) {
+            let checkboxes = document.querySelectorAll('.file' + fileIndex + '-locale');
+            let allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = !allChecked;
+            });
+        }
+
+        function toggleAllFilesForLocale(locale) {
+            let checkboxes = document.querySelectorAll('.locale-' + locale);
+            let allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = !allChecked;
+            });
+        }
+
+        function toggleAll() {
+            let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = !allChecked;
+            });
+        }
+    </script>
+</head>
+<body>
+<h2>Select Locales for Each Uploaded File</h2>
+<form action="/generate_audio" method="post">
+    {% for file_index, file_name in files_with_indices %}
+        <div>
+            <strong>{{ file_name }}</strong><br>
+            <div class="locale-checkbox-container">
+                {% for locale in locales %}
+                    <label>
+                        <input type="checkbox" class="file{{ file_index }}-locale locale-{{ locale }}"
+                               name="{{ file_name }}_locales" value="{{ locale }}">
+                        {{ locale }}
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="button" onclick="toggleAllLocalesForFile({{ file_index }})">Toggle All for This File</button>
+        </div>
+    {% endfor %}
+    <div>
+        <strong>Toggle All for Locale:</strong><br>
+        {% for locale in locales %}
+            <button type="button" onclick="toggleAllFilesForLocale('{{ locale }}')">Toggle All {{ locale }}</button>
+        {% endfor %}
+    </div>
+    <div>
+        <button type="button" onclick="toggleAll()">Toggle All</button>
+    </div>
+    <div>
+        <label for="model">Model:</label>
+        <label>
+            <select name="model">
+                <option value="tts-1">tts-1</option>
+                <option value="tts-1-hd">tts-1-hd</option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <label for="voice">Voice:</label>
+        <label>
+            <select name="voice">
+                <option value="echo">echo</option>
+                <option value="alloy">alloy</option>
+                <option value="fable">fable</option>
+                <option value="onyx">onyx</option>
+                <option value="nova">nova</option>
+                <option value="shimmer">shimmer</option>
+            </select>
+        </label>
+    </div>
+    <input type="submit" value="Generate Audio">
+</form>
+</body>
+</html>

@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    color: #333;
+}
+
+form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+input[type="file"] {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    background-color: #008cba;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #005f73;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #f0ad4e;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+button:hover {
+    background-color: #ec971f;
+}
+
+.locale-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.locale-container input[type="checkbox"] {
+    margin-bottom: 10px; /* Ensure spacing between rows */
+}
+
+/* Additional styles for toggling functionalities */
+.toggle-all-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.file-locale, .locale-locale {
+    display: inline-block; /* Align locales in rows */
+    margin-right: 15px;
+}
+
+
+.locale-checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap as needed */
+}
+
+.locale-checkbox-container label {
+    margin-right: 10px; /* Creates space between the checkbox and its label */
+}
